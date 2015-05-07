@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" href="css.css">
+</head>
+
+<body>
+	<h1 id="greeting" style="display: none;">HI</h1>
+	<h2 id="disclaimer">Disclaimer: Do not enter if epileptic!</h2>
+	<p id="button_h1" class="button" style="display: inline;" onclick="show()"> ENTER</p>
+	<p id="button_h2" class="button" style="display: inline;" onclick="exit()"> EXIT</p>
+	<p id="flash" style="display: none;">welcome to the house of pain</p> <br />
+	<p id="button" class="button" onclick="flash_init()" style="display: none;"> Click me</p>
+	<p id="button_2" class="button" style="width: 120px; display: none;" onclick="exit()"> Wait--make it stop!</p>
+<script>
+	function exit(){
+		window.open('','_parent',''); 
+		window.close();
+	}
+	function show(){
+		document.getElementById("disclaimer").style.display = "none";
+		document.getElementById("button_h1").style.display = "none";
+		document.getElementById("button_h2").style.display = "none";
+		document.getElementById("greeting").style.display = "block";
+		document.getElementById("flash").style.display = "block";
+		document.getElementById("button").style.display = "inline";
+	}
+	var count = 0;
+	function flash_init(){
+		if(count == 0) {
+			document.getElementById("button").innerHTML = "Click me again";
+			document.getElementById("button").style.width = "100px";
+		}
+		if(count == 1 || count%2 == 1) {
+			document.getElementById("button").innerHTML = "And again";
+			document.getElementById("button").style.width = "70px";
+		}
+		if(count%2 == 0){
+			document.getElementById("button").innerHTML = "Good, again";
+			document.getElementById("button").style.width = "80px";
+		}
+		if(count == 5){
+			document.getElementById("button_2").style.display = "inline";
+		}
+		count++;
+		window.setInterval("flash_this()", 100);
+	}
+	function flash_this(){
+		if(document.body.style.backgroundColor == "red")
+			document.body.style.backgroundColor = "blue";
+		else
+			document.body.style.backgroundColor = "red";
+	}
+</script>
+</body>
+</html>
